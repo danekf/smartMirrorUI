@@ -1,23 +1,40 @@
+import { useNavigate } from "react-router-dom";
 
 type moduleComponent = {
   name: string,
+  iconLink: string,
+  link: string,  
 }
 
 const Dashboard = () => {
+  const navigate = useNavigate();
 
-  const dashboardModules: moduleComponent[] = [{name: '1'},{name: '2'},{name: '3'},{name: '4'},];
+  const redirectOnClick = (link: string) => {
+    navigate(link);
+  };
+
+  /* Dashboard modules will ideally be dynamic in final. */
+  const dashboardModules: moduleComponent[] = [
+    {name: 'Daily Planner', iconLink:'/vite.svg', link:'/planner/today'},
+    {name: '2', iconLink:'/vite.svg', link:'/2'},
+    {name: '3', iconLink:'/vite.svg', link:'/3'},
+    {name: '4', iconLink:'/vite.svg', link:'/4'},
+  ];
 
   const moduleComponents = dashboardModules.map( (module) => {
     return(
-      <li className="module">{module.name}</li>
-    )
-  })
+      <li key={module.name} className="module w-[28rem] h-[16rem] border-2 border-solid" onClick={() => redirectOnClick(module.link)}>
+        <img className="ml-[10px] mt-[10px]" src={module.iconLink} alt={module.name}/> 
+        <span className="align-text-center">{module.name}</span>
+      </li>
+    );
+  });
   
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
-      <div className="modules flex items-center">
-        <ul className="flex">
+      <h1 className="m-[1rem]">Dashboard</h1>
+      <div className="modulesList">
+        <ul className="grid grid-flow-row grid-cols-2 gap-6">
           {moduleComponents}
         </ul>
       </div>
