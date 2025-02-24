@@ -23,9 +23,10 @@ const Dashboard = () => {
 
   const moduleComponents = dashboardModules.map( (module) => {
     return(
-      <li key={module.name} className="module w-[28rem] h-[16rem] border-2 border-solid" onClick={() => redirectOnClick(module.link)}>
-        <img className="ml-[10px] mt-[10px]" src={module.iconLink} alt={module.name}/> 
-        <span className="align-text-center">{module.name}</span>
+      <li key={module.name} className="module w-[28rem] h-[16rem] border-2 border-solid flex flex-col" onClick={() => redirectOnClick(module.link)}>
+        <img className="ml-[10px] mt-[10px] w-[5rem]" src={module.iconLink} alt={module.name}/> 
+        <span className="name">{module.name}</span>
+        <div className="miscUse grow"></div>
       </li>
     );
   });
@@ -34,7 +35,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <h1 className="m-[1rem]">Dashboard</h1>
       <div className="modulesList">
-        <ul className="grid grid-flow-row grid-cols-2 gap-6">
+        <ul className="grid grid-flow-row lg:grid-cols-2 grid-cols-1 gap-6 ">
           {moduleComponents}
         </ul>
       </div>
